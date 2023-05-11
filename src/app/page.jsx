@@ -10,7 +10,7 @@ export default function page() {
       <HomeHeader />
 
       {/*body */}
-      <div className="flex flex-col items-center mt-24">
+      <div className="flex flex-col items-center mt-[11rem]">
         <Image
           width="300"
           height="100"
