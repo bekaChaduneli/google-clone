@@ -1,12 +1,17 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import SearchBox from "./SearchBox";
 import { RiSettings3Line } from "react-icons/ri";
 import { TbGridDots } from "react-icons/tb";
 import SearchHeaderOptions from "./SearchHeaderOptions";
 
 export default function SearchHeader() {
+  const searchParams = useSearchParams();
+  const searchTerm = searchParams.get("searchTerm");
+  const [term, setTerm] = useState(searchTerm || "");
   return (
     <header className="sticky top-0 bg-white">
       <div className="flex w-full p-6 items-center justify-between ">
@@ -18,7 +23,7 @@ export default function SearchHeader() {
           />
         </Link>
         <div className="flex-1">
-          <SearchBox />
+          <SearchBox term={term} setTerm={setTerm} />
         </div>
         <div className="hidden md:inline-flex space-x-2 ">
           <RiSettings3Line className="header-icon" />
@@ -28,7 +33,7 @@ export default function SearchHeader() {
           Sign in
         </button>
       </div>
-      <SearchHeaderOptions />
+      <SearchHeaderOptions term={term} />
     </header>
   );
 }
